@@ -36,12 +36,10 @@ namespace Examen_Torres_Reyes.Data
             {
                 entity.ToTable("Proveedor");
 
-                entity.HasIndex(e => e.Rut, "UQ__Proveedo__C2B74E766AFAA862")
+                entity.HasIndex(e => e.Rut, "UQ__Proveedo__C2B74E7600548DD0")
                     .IsUnique();
 
-                entity.Property(e => e.Id)
-                    .ValueGeneratedNever()
-                    .HasColumnName("id");
+                entity.Property(e => e.Id).HasColumnName("id");
 
                 entity.Property(e => e.Nombre)
                     .HasMaxLength(50)
@@ -63,9 +61,7 @@ namespace Examen_Torres_Reyes.Data
             {
                 entity.ToTable("TipoProducto");
 
-                entity.Property(e => e.Id)
-                    .ValueGeneratedNever()
-                    .HasColumnName("id");
+                entity.Property(e => e.Id).HasColumnName("id");
 
                 entity.Property(e => e.Descripcion)
                     .HasMaxLength(200)
@@ -87,9 +83,7 @@ namespace Examen_Torres_Reyes.Data
             {
                 entity.ToTable("Ubicacion");
 
-                entity.Property(e => e.Id)
-                    .ValueGeneratedNever()
-                    .HasColumnName("id");
+                entity.Property(e => e.Id).HasColumnName("id");
 
                 entity.Property(e => e.Nombre)
                     .HasMaxLength(50)

@@ -1,106 +1,47 @@
 ﻿@model IEnumerable<Examen_Torres_Reyes.Models.Proveedor>
 
 @{
-    ViewData["Title"] = "Lista de Proveedores";
+    ViewData["Title"] = "Index";
 }
 
-<h1 class="table-title">Lista de Proveedores</h1>
+<h1>Index</h1>
 
 <p>
-    <a asp-action="Create" class="btn btn-primary">Crear Nuevo Proveedor</a>
+    <a asp-action="Create">Create New</a>
 </p>
-
-<table class="table table-bordered table-hover table-striped elegant-table">
+<table class="table">
     <thead>
         <tr>
-            <th>@Html.DisplayNameFor(model => model.Rut)</th>
-            <th>@Html.DisplayNameFor(model => model.Nombre)</th>
-            <th>@Html.DisplayName("Ubicación")</th>
-            <th>Acciones</th>
+            <th>
+                @Html.DisplayNameFor(model => model.Rut)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.Nombre)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.Ubicacion)
+            </th>
+            <th></th>
         </tr>
     </thead>
     <tbody>
-        @foreach (var item in Model)
-        {
-            <tr>
-                <td>@Html.DisplayFor(modelItem => item.Rut)</td>
-                <td>@Html.DisplayFor(modelItem => item.Nombre)</td>
-                <td>@Html.DisplayFor(modelItem => item.Ubicacion.Nombre)</td>
-                <td>
-                    <a asp-action="Edit" asp-route-id="@item.Id" class="btn btn-sm btn-outline-primary">Editar</a>
-                    <a asp-action="Details" asp-route-id="@item.Id" class="btn btn-sm btn-outline-info">Detalles</a>
-                    <a asp-action="Delete" asp-route-id="@item.Id" class="btn btn-sm btn-outline-danger">Eliminar</a>
-                </td>
-            </tr>
-        }
+@foreach (var item in Model) {
+        <tr>
+            <td>
+                @Html.DisplayFor(modelItem => item.Rut)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.Nombre)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.Ubicacion.Id)
+            </td>
+            <td>
+                <a asp-action="Edit" asp-route-id="@item.Id">Edit</a> |
+                <a asp-action="Details" asp-route-id="@item.Id">Details</a> |
+                <a asp-action="Delete" asp-route-id="@item.Id">Delete</a>
+            </td>
+        </tr>
+}
     </tbody>
 </table>
-
-<style>
-    /* Estilo del título */
-    .table-title {
-        font-size: 2rem;
-        color: #343a40;
-        margin-bottom: 20px;
-    }
-
-    /* Estilo de la tabla */
-    .elegant-table {
-        background-color: #f8f9fa;
-        border-radius: 8px;
-        box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
-        overflow: hidden;
-    }
-
-        .elegant-table thead {
-            background-color: #343a40; /* Color oscuro para la cabecera */
-            color: #ffffff;
-        }
-
-        .elegant-table th, .elegant-table td {
-            padding: 12px;
-            text-align: center;
-        }
-
-        .elegant-table tbody tr:hover {
-            background-color: #e9ecef; /* Color de fondo al hacer hover */
-        }
-
-    /* Estilo de los botones de acciones */
-    .btn {
-        margin-right: 5px;
-    }
-
-    .btn-outline-primary {
-        color: #007bff;
-        border-color: #007bff;
-        transition: background-color 0.3s, color 0.3s;
-    }
-
-        .btn-outline-primary:hover {
-            background-color: #007bff;
-            color: #fff;
-        }
-
-    .btn-outline-info {
-        color: #17a2b8;
-        border-color: #17a2b8;
-        transition: background-color 0.3s, color 0.3s;
-    }
-
-        .btn-outline-info:hover {
-            background-color: #17a2b8;
-            color: #fff;
-        }
-
-    .btn-outline-danger {
-        color: #dc3545;
-        border-color: #dc3545;
-        transition: background-color 0.3s, color 0.3s;
-    }
-
-        .btn-outline-danger:hover {
-            background-color: #dc3545;
-            color: #fff;
-        }
-</style>

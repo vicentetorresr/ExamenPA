@@ -48,7 +48,7 @@ namespace Examen_Torres_Reyes.Controllers
         // GET: Proveedors/Create
         public IActionResult Create()
         {
-            ViewData["UbicacionId"] = new SelectList(_context.Ubicacions, "Id", "Nombre");
+            ViewData["UbicacionId"] = new SelectList(_context.Ubicacions, "Id", "Id");
             return View();
         }
 
