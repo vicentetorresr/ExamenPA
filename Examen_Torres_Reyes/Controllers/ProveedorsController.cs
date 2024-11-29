@@ -48,26 +48,34 @@ namespace Examen_Torres_Reyes.Controllers
         // GET: Proveedors/Create
         public IActionResult Create()
         {
-            ViewData["UbicacionId"] = new SelectList(_context.Ubicacions, "Id", "Id");
+            ViewData["UbicacionId"] = new SelectList(_context.Ubicacions, "Id", "Nombre");
             return View();
         }
 
         // POST: Proveedors/Create
-        // To protect from overposting attacks, enable the specific properties you want to bind to.
-        // For more details, see http://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public async Task<IActionResult> Create([Bind("Id,Rut,Nombre,UbicacionId")] Proveedor proveedor)
+        public async Task<IActionResult> Create([Bind("Rut,Nombre,UbicacionId")] Proveedor proveedor)
         {
             if (ModelState.IsValid)
             {
-                _context.Add(proveedor);
-                await _context.SaveChangesAsync();
-                return RedirectToAction(nameof(Index));
+                try
+                {
+                    _context.Add(proveedor);
+                    await _context.SaveChangesAsync();
+                    return RedirectToAction(nameof(Index));
+                }
+                catch (Exception ex)
+                {
+                    ModelState.AddModelError("", "Ocurrió un error al guardar los datos. Por favor, intenta nuevamente.");
+                    Console.WriteLine(ex.Message);
+                }
             }
-            ViewData["UbicacionId"] = new SelectList(_context.Ubicacions, "Id", "Id", proveedor.UbicacionId);
+            // Volver a llenar ViewData en caso de fallo
+            ViewData["UbicacionId"] = new SelectList(_context.Ubicacions, "Id", "Nombre", proveedor.UbicacionId);
             return View(proveedor);
         }
+
 
         // GET: Proveedors/Edit/5
         public async Task<IActionResult> Edit(int? id)

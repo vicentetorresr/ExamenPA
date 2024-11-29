@@ -10,6 +10,6 @@ namespace Examen_Torres_Reyes.Models
         public string Nombre { get; set; } = null!;
         public int UbicacionId { get; set; }
 
-        public virtual Ubicacion Ubicacion { get; set; } = null!;
+        public virtual Ubicacion? Ubicacion { get; set; } = null!;
     }
 }
