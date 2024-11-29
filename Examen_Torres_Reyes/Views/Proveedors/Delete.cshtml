@@ -1,39 +1,116 @@
 ﻿@model Examen_Torres_Reyes.Models.Proveedor
 
 @{
-    ViewData["Title"] = "Delete";
+    ViewData["Title"] = "Eliminar Proveedor";
 }
 
-<h1>Delete</h1>
+<h1 class="form-title text-center">Eliminar Proveedor</h1>
 
-<h3>Are you sure you want to delete this?</h3>
-<div>
-    <h4>Proveedor</h4>
-    <hr />
-    <dl class="row">
-        <dt class = "col-sm-2">
-            @Html.DisplayNameFor(model => model.Rut)
-        </dt>
-        <dd class = "col-sm-10">
-            @Html.DisplayFor(model => model.Rut)
-        </dd>
-        <dt class = "col-sm-2">
-            @Html.DisplayNameFor(model => model.Nombre)
-        </dt>
-        <dd class = "col-sm-10">
-            @Html.DisplayFor(model => model.Nombre)
-        </dd>
-        <dt class = "col-sm-2">
-            @Html.DisplayNameFor(model => model.Ubicacion)
-        </dt>
-        <dd class = "col-sm-10">
-            @Html.DisplayFor(model => model.Ubicacion.Id)
-        </dd>
-    </dl>
-    
-    <form asp-action="Delete">
-        <input type="hidden" asp-for="Id" />
-        <input type="submit" value="Delete" class="btn btn-danger" /> |
-        <a asp-action="Index">Back to List</a>
-    </form>
+<div class="container elegant-form-container">
+    <div class="row justify-content-center">
+        <div class="col-md-8">
+            <div class="card shadow p-4">
+                <div class="card-body">
+                    <h3 class="text-center text-danger mb-4">¿Está seguro que desea eliminar este proveedor?</h3>
+
+                    <h4 class="text-center text-muted">Información del Proveedor</h4>
+                    <hr />
+                    <dl class="row mb-4">
+                        <dt class="col-sm-4 text-end font-weight-bold">
+                            @Html.DisplayNameFor(model => model.Rut)
+                        </dt>
+                        <dd class="col-sm-8 text-start">
+                            @Html.DisplayFor(model => model.Rut)
+                        </dd>
+
+                        <dt class="col-sm-4 text-end font-weight-bold">
+                            @Html.DisplayNameFor(model => model.Nombre)
+                        </dt>
+                        <dd class="col-sm-8 text-start">
+                            @Html.DisplayFor(model => model.Nombre)
+                        </dd>
+
+                        <dt class="col-sm-4 text-end font-weight-bold">
+                            @Html.DisplayNameFor(model => model.Ubicacion.Nombre)
+                        </dt>
+                        <dd class="col-sm-8 text-start">
+                            @Html.DisplayFor(model => model.Ubicacion.Nombre)
+                        </dd>
+                    </dl>
+
+                    <form asp-action="Delete">
+                        <input type="hidden" asp-for="Id" />
+                        <div class="form-group text-center">
+                            <input type="submit" value="Eliminar" class="btn btn-danger btn-lg elegant-submit-delete me-3" />
+                            <a asp-action="Index" class="btn btn-secondary elegant-back-button">Volver a la Lista</a>
+                        </div>
+                    </form>
+                </div>
+            </div>
+        </div>
+    </div>
 </div>
+
+@section Scripts {
+    @{
+        await Html.RenderPartialAsync("_ValidationScriptsPartial");
+    }
+}
+
+<style>
+    /* Título del Formulario */
+    .form-title {
+        font-size: 2rem;
+        color: #343a40;
+        margin-bottom: 20px;
+    }
+
+    /* Contenedor elegante para el formulario */
+    .elegant-form-container {
+        margin-top: 30px;
+    }
+
+    /* Estilo de la tarjeta que contiene el formulario */
+    .card {
+        border-radius: 10px;
+        border: none;
+    }
+
+    .card-body {
+        background-color: #f8f9fa;
+        border-radius: 10px;
+    }
+
+    /* Estilo del subtítulo */
+    .text-muted {
+        font-size: 1.25rem;
+    }
+
+    /* Estilo para los detalles del proveedor */
+    .row dl {
+        margin-top: 10px;
+    }
+
+    /* Estilo para los botones de acción */
+    .elegant-submit-delete {
+        padding: 10px 20px;
+        font-weight: bold;
+        transition: background-color 0.3s ease, transform 0.2s ease;
+    }
+
+        .elegant-submit-delete:hover {
+            background-color: #c82333;
+            transform: translateY(-3px);
+        }
+
+    .elegant-back-button {
+        padding: 10px 20px;
+        font-weight: 500;
+        transition: background-color 0.3s ease, transform 0.2s ease;
+    }
+
+        .elegant-back-button:hover {
+            background-color: #5a6268;
+            transform: translateY(-3px);
+        }
+</style>
