@@ -1,0 +1,44 @@
+-- Crear la tabla Ubicacion
+CREATE TABLE Ubicacion (
+    id INT NOT NULL PRIMARY KEY IDENTITY(1,1), -- Clave primaria con auto_increment
+    nombre VARCHAR(50) NOT NULL  -- Nombre de la ubicación
+);
+
+-- Crear la tabla TipoProducto
+CREATE TABLE TipoProducto (
+    id INT NOT NULL PRIMARY KEY IDENTITY(1,1), -- Clave primaria con auto_increment
+    nombre VARCHAR(50) NOT NULL,       -- Nombre del tipo de producto
+    descripcion VARCHAR(200) NULL,    -- Descripción detallada (puede ser NULL)
+    estado VARCHAR(50) NULL           -- Estado del tipo de producto (puede ser NULL)
+);
+
+-- Crear la tabla Proveedor
+CREATE TABLE Proveedor (
+    id INT NOT NULL PRIMARY KEY IDENTITY(1,1), -- Clave primaria con auto_increment
+    rut VARCHAR(20) NOT NULL UNIQUE,  -- Identificador único del proveedor
+    nombre VARCHAR(50) NOT NULL,      -- Nombre del proveedor
+    UbicacionId INT NOT NULL,         -- Clave foránea que relaciona con la tabla Ubicacion
+    CONSTRAINT FK_Proveedor_Ubicacion FOREIGN KEY (UbicacionId)
+        REFERENCES Ubicacion (id)     -- Definición de la clave foránea
+        ON DELETE CASCADE             -- Si se elimina una ubicación, se eliminan los proveedores relacionados
+        ON UPDATE CASCADE             -- Si se actualiza una ubicación, se reflejan los cambios en los proveedores
+);
+
+-- Insertar datos de ejemplo en las tablas
+-- Insertar ubicaciones
+INSERT INTO Ubicacion (nombre) VALUES
+('Santiago'),
+('Valparaíso'),
+('Concepción');
+
+-- Insertar tipos de productos
+INSERT INTO TipoProducto (nombre, descripcion, estado) VALUES
+('Electrónicos', 'Productos electrónicos como celulares y laptops', 'Disponible'),
+('Ropa', 'Vestimenta para todas las edades', 'No Disponible'),
+('Alimentos', 'Productos alimenticios perecibles y no perecibles', 'Disponible');
+
+-- Insertar proveedores
+INSERT INTO Proveedor (rut, nombre, UbicacionId) VALUES
+('76.123.456-7', 'Proveedor A', 1),
+('77.987.654-3', 'Proveedor B', 2),
+('78.456.123-9', 'Proveedor C', 3);
