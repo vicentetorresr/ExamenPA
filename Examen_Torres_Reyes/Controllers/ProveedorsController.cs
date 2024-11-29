@@ -90,7 +90,7 @@ namespace Examen_Torres_Reyes.Controllers
             {
                 return NotFound();
             }
-            ViewData["UbicacionId"] = new SelectList(_context.Ubicacions, "Id", "Id", proveedor.UbicacionId);
+            ViewData["UbicacionId"] = new SelectList(_context.Ubicacions, "Id", "Nombre", proveedor.UbicacionId);
             return View(proveedor);
         }
 
